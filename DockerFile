@@ -1,0 +1,21 @@
+# ベースイメージの指定
+FROM node:18-alpine
+
+# 作業ディレクトリを指定
+WORKDIR /app
+
+# パッケージファイルをコピーし依存関係をインストール
+COPY package.json ./
+RUN npm install
+
+# 残りのソースコードをコピー
+COPY . .
+
+# ビルドを実行
+RUN npm run build
+
+# サーバーを起動
+CMD ["npm", "start"]
+
+# 使用するポートを指定
+EXPOSE 3000
