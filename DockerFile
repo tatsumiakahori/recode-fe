@@ -1,20 +1,22 @@
-# ベースイメージの指定
-FROM node:18-alpine
+# ベースイメージ
+FROM node:20.6.0 AS builder
 
-# 作業ディレクトリを指定
+# 作業ディレクトリを設定
 WORKDIR /app
 
-# パッケージファイルをコピーし依存関係をインストール
-COPY package.json ./
+# package.jsonとyarn.lockをコピー
+COPY package*.json ./
+
+# 依存関係をインストール
 RUN npm install
 
-# 残りのソースコードをコピー
+# アプリケーションのソースコードをコピー
 COPY . .
 
-# ビルドを実行
+# アプリケーションをビルド
 RUN npm run build
 
-# サーバーを起動
+# アプリケーションを実行
 CMD ["npm", "start"]
 
 # 使用するポートを指定
