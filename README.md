@@ -1,2 +1,2 @@
 # recode-fe
-クローゼット管理アプリreCODEのフロントエンド(Gin)
+クローゼット管理アプリreCODEのフロントエンド(React)
